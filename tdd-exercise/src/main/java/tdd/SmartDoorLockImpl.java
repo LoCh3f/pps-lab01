@@ -2,9 +2,11 @@ package tdd;
 
 public class SmartDoorLockImpl implements SmartDoorLock {
     private boolean open;
-    private int pin = 0;
+    private int pin;
+    private static final int DEFAULT_PIN = 1111;
     public SmartDoorLockImpl() {
         this.open = true;
+        this.pin = DEFAULT_PIN;
     }
     @Override
     public void setPin(final int pin) throws IllegalStateException {

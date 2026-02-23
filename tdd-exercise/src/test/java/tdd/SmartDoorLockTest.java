@@ -17,7 +17,8 @@ public class SmartDoorLockTest {
         SmartDoorLock lock = new SmartDoorLockImpl();
         lock.setPin(WEAK_PIN);
         lock.lock();
-        assertTrue(lock.isLocked());
+        lock.unlock(WEAK_PIN);
+        assertFalse(lock.isLocked());
     }
 
 }
