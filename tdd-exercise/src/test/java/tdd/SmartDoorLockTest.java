@@ -23,5 +23,11 @@ public class SmartDoorLockTest {
         lock.unlock(SmartDoorLock.DEFAULT_PIN);
         assertFalse(lock.isLocked());
     }
-
+    @Test
+    public void testNewPin() {
+        lock.setPin(WEAK_PIN);
+        lock.lock();
+        lock.unlock(WEAK_PIN);
+        assertFalse(lock.isLocked());
+    }
 }
