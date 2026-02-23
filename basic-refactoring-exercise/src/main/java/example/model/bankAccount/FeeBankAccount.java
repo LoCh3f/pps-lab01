@@ -24,8 +24,8 @@ public class FeeBankAccount implements BankAccount {
 
     @Override
     public void withdraw(final int userID, final double amount) {
-        this.bankAccount.withdraw(userID,amount);
-        this.applyFee(userID,this.fee);
+        this.bankAccount.withdraw(userID, amount);
+        this.applyFee(userID, this.fee);
     }
 
     private void applyFee(final int userID, final int fee){
