@@ -32,7 +32,7 @@ public class SmartDoorLockImpl implements SmartDoorLock {
     public void unlock(final int pin) {
         if (this.pin == pin && this.isLocked()) {
             this.open = !this.open;
-        } else if (this.pin != pin) {
+        } else {
             this.newWrongAttempt();
         }
 

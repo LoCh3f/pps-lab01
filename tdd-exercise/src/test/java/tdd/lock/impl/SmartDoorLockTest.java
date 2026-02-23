@@ -9,6 +9,7 @@ import static tdd.lock.LockSpecification.DEFAULT_PIN;
 
 public class SmartDoorLockTest {
     private static final int WEAK_PIN = 1234;
+    private static final int NOT_APPROVED_PIN = 123;
     private static final int EXPECTED_ATTEMPTS = 2;
     private SmartDoorLock lock;
     @BeforeEach
@@ -62,10 +63,13 @@ public class SmartDoorLockTest {
     @Test
     public void testBlockState() {
         lock.lock();
-        for (int i = 0; i <5;i++) {
-            lock.unlock(WEAK_PIN);
-        }
+        blockLock(lock);
         assertTrue(lock.isBlocked());
     }
 
+    private void blockLock(final SmartDoorLock lock){
+        for (int i = 0; i <5;i++) {
+            lock.unlock(NOT_APPROVED_PIN);
+        }
+    }
 }
