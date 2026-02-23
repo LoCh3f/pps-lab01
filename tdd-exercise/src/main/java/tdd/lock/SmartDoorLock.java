@@ -61,10 +61,16 @@ public interface SmartDoorLock {
      */
     int getFailedAttempts();
 
+
     /**
+     * /**
      * Resets the door lock.
      * This completely resets the lock, including the PIN, failed attempts, and blocked state.
      * It sets the lock to the initial state (open).
+     * @param defaultPin granted when the lock it's been bought
+     * @param lastUsedPin last set pin
+     * This grant that only the real owner can reset the original state (open), otherwise anyone could open the door of your house.
+     *
      */
     void reset(int defaultPin, int lastUsedPin);
 }
