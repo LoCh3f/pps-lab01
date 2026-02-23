@@ -1,6 +1,7 @@
+package example.model.bankAccount;
+
 import example.model.AccountHolder;
 import example.model.BankAccount;
-import example.model.SimpleBankAccount;
 
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;

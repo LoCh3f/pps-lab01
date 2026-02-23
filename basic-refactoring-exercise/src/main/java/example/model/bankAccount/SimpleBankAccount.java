@@ -1,4 +1,7 @@
-package example.model;
+package example.model.bankAccount;
+
+import example.model.AccountHolder;
+import example.model.BankAccount;
 
 /**
  * This class represent a particular instance of a BankAccount.
