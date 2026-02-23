@@ -1,4 +1,4 @@
-package tdd;
+package tdd.lock.impl;
 
 import tdd.lock.SmartDoorLock;
 
