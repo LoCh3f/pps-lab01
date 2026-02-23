@@ -10,6 +10,13 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class SimpleBankAccountTest {
 
+    public static final int FRANKLIN_BILL = 100;
+    public static final int S_GRANT_BILL = 50;
+    public static final int JACKSON_BILL = 20;
+    public static final int HAMILTON_BILL = 10;
+
+
+    public static final int FAKE_ID = 2;
     private AccountHolder accountHolder;
     private BankAccount bankAccount;
 
@@ -26,28 +33,35 @@ class SimpleBankAccountTest {
 
     @Test
     void testDeposit() {
-        bankAccount.deposit(accountHolder.id(), 100);
-        assertEquals(100, bankAccount.getBalance());
+        bankAccount.deposit(accountHolder.id(), FRANKLIN_BILL);
+        assertEquals(FRANKLIN_BILL, bankAccount.getBalance());
     }
 
     @Test
     void testWrongDeposit() {
-        bankAccount.deposit(accountHolder.id(), 100);
-        bankAccount.deposit(2, 50);
-        assertEquals(100, bankAccount.getBalance());
+        bankAccount.deposit(accountHolder.id(), FRANKLIN_BILL);
+        bankAccount.deposit(FAKE_ID, S_GRANT_BILL);
+        assertEquals(FRANKLIN_BILL, bankAccount.getBalance());
     }
 
     @Test
     void testWithdraw() {
-        bankAccount.deposit(accountHolder.id(), 100);
-        bankAccount.withdraw(accountHolder.id(), 70);
-        assertEquals(30, bankAccount.getBalance());
+        bankAccount.deposit(accountHolder.id(), FRANKLIN_BILL);
+        bankAccount.withdraw(accountHolder.id(), S_GRANT_BILL + JACKSON_BILL);
+        assertEquals(JACKSON_BILL + HAMILTON_BILL - SimpleBankAccount.FEE, bankAccount.getBalance());
     }
 
     @Test
     void testWrongWithdraw() {
-        bankAccount.deposit(accountHolder.id(), 100);
-        bankAccount.withdraw(2, 70);
-        assertEquals(100, bankAccount.getBalance());
+        bankAccount.deposit(accountHolder.id(), FRANKLIN_BILL);
+        bankAccount.withdraw(FAKE_ID, S_GRANT_BILL + JACKSON_BILL);
+        assertEquals(FRANKLIN_BILL, bankAccount.getBalance());
+    }
+
+    @Test
+    void testFeeIsCorrectlyApplied() {
+        bankAccount.deposit(accountHolder.id(),FRANKLIN_BILL);
+        bankAccount.withdraw(accountHolder.id(),FRANKLIN_BILL);
+        assertEquals(FRANKLIN_BILL,bankAccount.getBalance());
     }
 }

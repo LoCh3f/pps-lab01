@@ -34,6 +34,7 @@ replay_pid*
 !.vscode/launch.json
 !.vscode/extensions.json
 !.vscode/*.code-snippets
+.idea
 
 # Local History for Visual Studio Code
 .history/
@@ -69,7 +70,6 @@ gradle-app.setting
 .project
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
-
 ### Gradle Patch ###
 # Java heap dump
 *.hprof
