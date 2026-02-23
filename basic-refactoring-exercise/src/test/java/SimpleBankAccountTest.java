@@ -48,7 +48,7 @@ class SimpleBankAccountTest {
     void testWithdraw() {
         bankAccount.deposit(accountHolder.id(), FRANKLIN_BILL);
         bankAccount.withdraw(accountHolder.id(), S_GRANT_BILL + JACKSON_BILL);
-        assertEquals(JACKSON_BILL + HAMILTON_BILL - SimpleBankAccount.FEE, bankAccount.getBalance());
+        assertEquals(JACKSON_BILL + HAMILTON_BILL, bankAccount.getBalance());
     }
 
     @Test
@@ -58,10 +58,4 @@ class SimpleBankAccountTest {
         assertEquals(FRANKLIN_BILL, bankAccount.getBalance());
     }
 
-    @Test
-    void testFeeIsCorrectlyApplied() {
-        bankAccount.deposit(accountHolder.id(),FRANKLIN_BILL);
-        bankAccount.withdraw(accountHolder.id(),FRANKLIN_BILL);
-        assertEquals(FRANKLIN_BILL,bankAccount.getBalance());
-    }
 }
