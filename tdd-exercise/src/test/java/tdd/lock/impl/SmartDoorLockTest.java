@@ -63,10 +63,17 @@ public class SmartDoorLockTest {
     @Test
     public void testBlockState() {
         lock.lock();
-        blockLock(lock);
+        this.blockLock(lock);
         assertTrue(lock.isBlocked());
     }
-
+    @Test
+    public void testResetFromState() {
+        lock.setPin(WEAK_PIN);
+        lock.lock();
+        this.blockLock(lock);
+        lock.reset(DEFAULT_PIN,WEAK_PIN);
+        assertFalse(lock.isBlocked());
+    }
     private void blockLock(final SmartDoorLock lock){
         for (int i = 0; i <5;i++) {
             lock.unlock(NOT_APPROVED_PIN);
