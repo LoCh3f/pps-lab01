@@ -18,8 +18,10 @@ public class SmartDoorLockImpl implements SmartDoorLock {
     }
 
     @Override
-    public void unlock(int pin) {
-
+    public void unlock(final int pin) {
+        if (this.pin == pin) {
+            this.open = !this.open;
+        }
     }
 
     @Override
