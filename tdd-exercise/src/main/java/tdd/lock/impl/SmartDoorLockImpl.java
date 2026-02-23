@@ -4,10 +4,16 @@ import tdd.lock.SmartDoorLock;
 
 public class SmartDoorLockImpl implements SmartDoorLock {
     private boolean open;
+    private boolean blocked;
     private int pin;
+    private int attempts;
+
     public SmartDoorLockImpl() {
         this.open = true;
+        this.blocked = false;
         this.pin = DEFAULT_PIN;
+        this.attempts = 0;
+
     }
     @Override
     public void setPin(final int pin) throws IllegalStateException {
@@ -23,7 +29,14 @@ public class SmartDoorLockImpl implements SmartDoorLock {
         if (this.pin == pin && this.isLocked()) {
             this.open = !this.open;
         } else if (this.pin != pin) {
-            throw new IllegalArgumentException("Wrong Pin, use correct pin to unlock the door");
+            this.newWrongAttempt();
+        }
+
+    }
+    private void newWrongAttempt() {
+        this.attempts += 1;
+        if (this.attempts == MAX_ATTEMPTS) {
+            this.block();
         }
 
     }
@@ -46,17 +59,21 @@ public class SmartDoorLockImpl implements SmartDoorLock {
 
     @Override
     public boolean isBlocked() {
-        return false;
+        return this.blocked;
+    }
+
+    private void block() {
+        this.blocked = true;
     }
 
     @Override
     public int getMaxAttempts() {
-        return 0;
+        return MAX_ATTEMPTS;
     }
 
     @Override
     public int getFailedAttempts() {
-        return 0;
+        return this.attempts;
     }
 
     @Override

@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class SmartDoorLockTest {
     private static final int WEAK_PIN = 1234;
+    private static final int EXPECTED_ATTEMPTS = 2;
     private SmartDoorLock lock;
     @BeforeEach
     public void BeforeEach() {
@@ -44,7 +45,17 @@ public class SmartDoorLockTest {
     @Test
     public void testWrongPin() {
         lock.lock();
-        assertThrows(IllegalArgumentException.class, () -> lock.unlock(WEAK_PIN));
+        lock.unlock(WEAK_PIN);
+        lock.unlock(WEAK_PIN);
+        assertEquals(EXPECTED_ATTEMPTS,lock.getFailedAttempts());
+    }
+    @Test
+    public void testBlockState() {
+        lock.lock();
+        for (int i = 0; i <5;i++) {
+            lock.unlock(WEAK_PIN);
+        }
+        assertTrue(lock.isBlocked());
     }
 
 }
