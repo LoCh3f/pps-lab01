@@ -1,4 +1,4 @@
-package tdd;
+package tdd.stack;
 
 import org.junit.jupiter.api.Test;
 

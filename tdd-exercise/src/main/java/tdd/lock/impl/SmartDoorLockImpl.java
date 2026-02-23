@@ -1,5 +1,7 @@
 package tdd;
 
+import tdd.lock.SmartDoorLock;
+
 public class SmartDoorLockImpl implements SmartDoorLock {
     private boolean open;
     private int pin;

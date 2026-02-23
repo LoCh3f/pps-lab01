@@ -1,6 +1,5 @@
-package tdd;
+package tdd.queue;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;

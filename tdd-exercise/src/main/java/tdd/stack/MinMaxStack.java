@@ -1,4 +1,4 @@
-package tdd;
+package tdd.stack;
 
 /**
  * Task 2 - TDD for Min Max Stack
