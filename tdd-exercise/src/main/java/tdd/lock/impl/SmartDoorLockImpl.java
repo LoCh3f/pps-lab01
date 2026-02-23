@@ -82,6 +82,9 @@ public class SmartDoorLockImpl implements SmartDoorLock {
 
     @Override
     public void reset(final int defaultPin, final int lastUsedPin) {
-
+        if (DEFAULT_PIN == defaultPin && this.pin == lastUsedPin) {
+            this.blocked = false;
+            this.open = true;
+        }
     }
 }
