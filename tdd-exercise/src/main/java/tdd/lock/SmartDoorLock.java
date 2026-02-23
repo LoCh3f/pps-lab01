@@ -53,7 +53,7 @@ public interface SmartDoorLock {
      *
      * @return The maximum number of attempts.
      */
-    int getMaxAttempts();
+    int getRemainingAttempts();
 
     /**
      * Gets the number of failed unlock attempts.

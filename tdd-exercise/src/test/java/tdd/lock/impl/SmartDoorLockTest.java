@@ -55,7 +55,7 @@ public class SmartDoorLockTest {
         lock.unlock(WEAK_PIN);
         lock.unlock(WEAK_PIN);
         lock.unlock(WEAK_PIN);
-        assertEquals(EXPECTED_ATTEMPTS,lock.getMaxAttempts());
+        assertEquals(EXPECTED_ATTEMPTS,lock.getRemainingAttempts());
 
     }
     @Test
