@@ -31,4 +31,9 @@ public class SmartDoorLockTest {
         lock.unlock(WEAK_PIN);
         assertFalse(lock.isLocked());
     }
+    @Test
+    public void testChangePinWhenLocked() {
+        lock.lock();
+        assertThrows(IllegalStateException.class,() -> lock.setPin(WEAK_PIN));
+    }
 }
