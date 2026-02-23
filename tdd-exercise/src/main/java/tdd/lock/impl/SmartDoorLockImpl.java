@@ -1,6 +1,10 @@
 package tdd.lock.impl;
 
+import tdd.lock.LockSpecification;
 import tdd.lock.SmartDoorLock;
+
+import static tdd.lock.LockSpecification.DEFAULT_PIN;
+import static tdd.lock.LockSpecification.MAX_ATTEMPTS;
 
 public class SmartDoorLockImpl implements SmartDoorLock {
     private boolean open;
@@ -77,7 +81,7 @@ public class SmartDoorLockImpl implements SmartDoorLock {
     }
 
     @Override
-    public void reset() {
+    public void reset(final int defaultPin, final int lastUsedPin) {
 
     }
 }

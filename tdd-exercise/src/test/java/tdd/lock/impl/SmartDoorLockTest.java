@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import tdd.lock.SmartDoorLock;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static tdd.lock.LockSpecification.DEFAULT_PIN;
 
 public class SmartDoorLockTest {
     private static final int WEAK_PIN = 1234;
@@ -27,7 +28,7 @@ public class SmartDoorLockTest {
     @Test
     public void testLockUnlock() {
         lock.lock();
-        lock.unlock(SmartDoorLock.DEFAULT_PIN);
+        lock.unlock(DEFAULT_PIN);
         assertFalse(lock.isLocked());
     }
     @Test

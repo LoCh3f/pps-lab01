@@ -9,8 +9,6 @@ package tdd.lock;
  */
 public interface SmartDoorLock {
 
-    public static final int DEFAULT_PIN = 1111;
-    public static final int MAX_ATTEMPTS = 5;
     /**
      * Sets a new PIN for the door lock.
      * You can set only when the system is open (not locked or blocked).
@@ -68,5 +66,5 @@ public interface SmartDoorLock {
      * This completely resets the lock, including the PIN, failed attempts, and blocked state.
      * It sets the lock to the initial state (open).
      */
-    void reset();
+    void reset(int defaultPin, int lastUsedPin);
 }
