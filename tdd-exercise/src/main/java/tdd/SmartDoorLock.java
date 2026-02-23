@@ -9,6 +9,8 @@ package tdd;
  */
 public interface SmartDoorLock {
 
+    public static final int DEFAULT_PIN = 1111;
+
     /**
      * Sets a new PIN for the door lock.
      * You can set only when the system is open (not locked or blocked).

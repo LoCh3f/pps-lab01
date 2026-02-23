@@ -13,11 +13,10 @@ public class SmartDoorLockTest {
         assertFalse(lock.isLocked());
     }
     @Test
-    public void testSetPin() {
+    public void testLockUnlock() {
         SmartDoorLock lock = new SmartDoorLockImpl();
-        lock.setPin(WEAK_PIN);
         lock.lock();
-        lock.unlock(WEAK_PIN);
+        lock.unlock(SmartDoorLock.DEFAULT_PIN);
         assertFalse(lock.isLocked());
     }
 

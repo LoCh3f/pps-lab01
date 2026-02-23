@@ -3,7 +3,6 @@ package tdd;
 public class SmartDoorLockImpl implements SmartDoorLock {
     private boolean open;
     private int pin;
-    private static final int DEFAULT_PIN = 1111;
     public SmartDoorLockImpl() {
         this.open = true;
         this.pin = DEFAULT_PIN;
@@ -19,14 +18,20 @@ public class SmartDoorLockImpl implements SmartDoorLock {
 
     @Override
     public void unlock(final int pin) {
-        if (this.pin == pin) {
+        if (this.pin == pin && this.isLocked()) {
             this.open = !this.open;
         }
     }
 
     @Override
     public void lock() {
-        this.open = false;
+        if (!this.isLocked()) {
+           this.changeState();
+        }
+    }
+
+    private void changeState() {
+        this.open = !this.open;
     }
 
     @Override
