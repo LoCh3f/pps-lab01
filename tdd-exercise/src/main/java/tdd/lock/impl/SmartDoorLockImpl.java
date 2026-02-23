@@ -68,7 +68,7 @@ public class SmartDoorLockImpl implements SmartDoorLock {
 
     @Override
     public int getMaxAttempts() {
-        return MAX_ATTEMPTS;
+        return MAX_ATTEMPTS - this.attempts;
     }
 
     @Override
