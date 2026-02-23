@@ -10,10 +10,10 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class SimpleBankAccountTest {
 
-    public static final int FRANKLIN_BILL = 100;
-    public static final int S_GRANT_BILL = 50;
-    public static final int JACKSON_BILL = 20;
-    public static final int HAMILTON_BILL = 10;
+    private static final int FRANKLIN_BILL = 100;
+    private static final int S_GRANT_BILL = 50;
+    private static final int JACKSON_BILL = 20;
+    private static final int HAMILTON_BILL = 10;
 
 
     public static final int FAKE_ID = 2;
