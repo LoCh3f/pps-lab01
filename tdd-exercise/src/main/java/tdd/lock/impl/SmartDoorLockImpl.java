@@ -22,7 +22,10 @@ public class SmartDoorLockImpl implements SmartDoorLock {
     public void unlock(final int pin) {
         if (this.pin == pin && this.isLocked()) {
             this.open = !this.open;
+        } else if (this.pin != pin) {
+            throw new IllegalArgumentException("Wrong Pin, use correct pin to unlock the door");
         }
+
     }
 
     @Override
