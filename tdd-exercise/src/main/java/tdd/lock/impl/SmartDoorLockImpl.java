@@ -3,8 +3,7 @@ package tdd.lock.impl;
 import tdd.lock.LockSpecification;
 import tdd.lock.SmartDoorLock;
 
-import static tdd.lock.LockSpecification.DEFAULT_PIN;
-import static tdd.lock.LockSpecification.MAX_ATTEMPTS;
+import static tdd.lock.LockSpecification.*;
 
 public class SmartDoorLockImpl implements SmartDoorLock {
     private boolean open;
@@ -20,12 +19,16 @@ public class SmartDoorLockImpl implements SmartDoorLock {
 
     }
     @Override
-    public void setPin(final int pin) throws IllegalStateException {
-       if (this.open) {
+    public void setPin(final int pin) {
+
+        if (pin < MIN_PIN_ACCEPTED || pin > MAX_PIN_ACCEPTED) {
+            throw new IllegalArgumentException("This pin length is not accepted");
+        }
+        if (this.open) {
            this.pin = pin;
-       } else {
+        } else {
            throw new IllegalStateException("The Door is locked, cannot set up new pin");
-       }
+        }
     }
 
     @Override
