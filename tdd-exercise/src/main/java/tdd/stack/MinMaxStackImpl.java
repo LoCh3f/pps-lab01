@@ -50,12 +50,18 @@ public class MinMaxStackImpl implements MinMaxStack {
 
     @Override
     public int getMin() {
-        return 0;
+        if (this.minMaxValues.isEmpty()){
+            throw new IllegalStateException();
+        }
+        return this.lastMinMaxPair().min;
     }
 
     @Override
     public int getMax() {
-        return 0;
+        if (this.minMaxValues.isEmpty()){
+            throw new IllegalStateException();
+        }
+        return this.lastMinMaxPair().max;
     }
 
     @Override
