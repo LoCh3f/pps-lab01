@@ -66,12 +66,12 @@ public class MinMaxStackImpl implements MinMaxStack {
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return this.stack.isEmpty();
     }
 
     @Override
     public int size() {
-        return 0;
+        return this.stack.size();
     }
 
     private MinMax lastMinMaxPair() {
