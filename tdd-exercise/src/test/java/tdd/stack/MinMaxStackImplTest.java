@@ -17,4 +17,9 @@ class MinMaxStackImplTest {
         stack.push(FIRST_ELEMENT);
         assertEquals(FIRST_ELEMENT, this.stack.pop());
     }
+    @Test
+    public void testPeek() {
+        this.stack.push(FIRST_ELEMENT);
+        assertEquals(FIRST_ELEMENT, this.stack.peek());
+    }
 }
