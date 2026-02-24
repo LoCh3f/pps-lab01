@@ -33,6 +33,9 @@ public class MinMaxStackImpl implements MinMaxStack {
 
     @Override
     public int pop() {
+        if (stack.isEmpty()) {
+            throw new IllegalStateException();
+        }
         this.minMaxValues.remove(this.lastMinMaxPair());
         return stack.pop();
     }
