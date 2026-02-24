@@ -9,7 +9,6 @@ class MinMaxStackImplTest {
     private static final int FIRST_ELEMENT = 1;
     private static final int EMPTY_SIZE = 0;
     private static final int EXPECTED_SIZE = 2;
-    private MinMaxStackImpl minMaxStack;
     private MinMaxStack stack;
     @BeforeEach
     void BeforeEach() {
