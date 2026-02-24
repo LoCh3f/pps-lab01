@@ -9,7 +9,7 @@ package tdd.stack;
  * <br>
  * <strong>NB!! You should not call Collections.min or Collections.max to get the min/max values.</strong>
  */
-public interface MinMaxStack {
+public interface    MinMaxStack {
 
     /**
      * Pushes an integer onto the stack.
