@@ -15,10 +15,33 @@ package tdd.queue;
  */
 public interface CircularQueue {
 
+    /**
+     * @return  number of element in the queue
+     */
     public int size();
+
+    /**
+     * @return true if the queue is empty
+     */
     public boolean isEmpty();
+
+    /**
+     * @return true if the queue is full
+     */
     public boolean isFull();
+
+    /**
+     * @param value to add in the queue
+     */
     public void enqueue(int value);
+
+    /**
+     * @return the oldest element of the queue and removes it
+     */
     public int dequeue();
+
+    /**
+     * @return the oldest element in the queue
+     */
     public int peek();
 }
