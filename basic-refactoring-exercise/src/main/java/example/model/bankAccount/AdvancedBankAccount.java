@@ -2,21 +2,18 @@ package example.model.bankAccount;
 
 import example.model.AccountHolder;
 import example.model.BankAccount;
-import example.model.bankAccount.interest.Interest;
 
+import javax.swing.text.html.Option;
 import java.util.Optional;
 
 public class AdvancedBankAccount implements BankAccount {
 
     public static final int YOU_ARE_BROKE_BRO = 0;
-
-    private final int fee;
     private final double activeInterest;
     private final BankAccount account;
 
-    private AdvancedBankAccount(final BankAccount account,final double balance, final int fee, final double activeInterest) {
+    private AdvancedBankAccount(final BankAccount account, final double activeInterest) {
         this.account = account;
-        this.fee = fee;
         this.activeInterest = activeInterest;
     }
 
@@ -41,39 +38,69 @@ public class AdvancedBankAccount implements BankAccount {
         this.account.withdraw(userID, amount);
     }
 
+    public void gainInterest(final int userID) {
+        this.account.deposit(userID,this.calculateInterest());
+    }
+
+    private double calculateInterest() {
+        return this.account.getBalance() * this.activeInterest;
+    }
+
     public static class Builder{
-        private int fee = 0 ;
-        private double activeInterest = 0;
-        private Optional<BankAccount> account = Optional.empty();
-        private double balance = 0;
+        private double activeInterest;
+        private Optional<String> name;
+        private Optional<String> surname;
+        private Optional<Integer> id;
+        private Optional<Integer> fee;
+        private double balance;
 
-        public AdvancedBankAccount Build() {
-            if (this.account.isEmpty()) {
-                throw new IllegalStateException("Account is not set, cannot build a Bank Account");
-            }
-            final var newAccount = account.get();
-            this.account = Optional.empty();
-            return new AdvancedBankAccount(newAccount,this.balance,this.fee,this.activeInterest);
-        }
-
-        public Builder setFee(final int fee) {
-            this.fee = fee;
+        public Builder setUpBuild() {
+            this.name = Optional.empty();
+            this.surname = Optional.empty();
+            this.id = Optional.empty();
+            this.fee = Optional.empty();
+            this.activeInterest = 0.0;
+            this.balance = 0.0;
             return this;
         }
 
+        public Builder setName(final String name) {
+            this.name = Optional.of(name);
+            return this;
+        }
+        public Builder setSurname(final String surname) {
+            this.surname = Optional.of(surname);
+            return this;
+        }
+        public Builder setId(final int id) {
+            this.id = Optional.of(id);
+            return this;
+        }
+        public Builder setBalance(final double balance) {
+            this.balance = balance;
+            return this;
+        }
+        public Builder setFee(final int fee) {
+            this.fee = Optional.of(fee);
+            return this;
+        }
         public Builder setActiveInterest(final double activeInterest) {
             this.activeInterest = activeInterest;
             return this;
         }
 
-        public Builder setHolder(final BankAccount account) {
-            this.account = Optional.of(account);
-            return this;
+        public AdvancedBankAccount Build() {
+            if(this.name.isEmpty() || this.surname.isEmpty() || this.id.isEmpty()) {
+                throw new IllegalStateException("Missing account Holder Data");
+            }
+            final BankAccount account;
+            final AccountHolder holder = new AccountHolder(this.name.get(), this.surname.get(), this.id.get());
+            return this.fee.map(integer
+                            -> new AdvancedBankAccount(new FeeBankAccount(holder, this.balance, integer), this.activeInterest))
+                    .orElseGet(()
+                            -> new AdvancedBankAccount(new SimpleBankAccount(holder, this.balance), this.activeInterest));
         }
 
-        public Builder setBalance(final double balance) {
-            this.balance = balance;
-            return this;
-        }
+
     }
 }
